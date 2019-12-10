@@ -3,33 +3,45 @@ VIDEOCLUB
 Este documento explica un caso de estudio sobre la gestión de todos los videoclubs
 de una cadena llamada APPV.
 **Información importante sobre los videoclubs de la cadena:**
+
 * Código del videoclub (autonumérico)
 * Nombre del gerente (cadena, obligatorio y editable)
 * Ciudad (cadena, obligatorio y editable)
 * Calle (cadena, obligatorio y editable)
 * Código postal (cadena 5 caracteres, obligatorio y editable)
+
 **Información importante sobre las películas:**
+
 * Código de la película (autonumérico)
 * Nombre (cadena, obligatorio y editable)
 * Director (cadena, opcional y editable)
 * Fecha de estreno (fecha, obligatorio y editable)
 * Precio de alquiler (real, obligatorio y editable)
+
 **Información importante sobre los socios:**
+
 * Código del socio (autonumérico)
 * Nombre (cadena, obligatorio y editable)
 * Edad (entero, obligatorio y editable)
+
 **Información relevante sobre los alquileres:**
+
 * Código del alquiler (autonumérico)
 * Fecha de recogida (fecha, obligatorio y no editable)
 * Fecha de devolución (fecha, obligatorio y editable)
 * Total a pagar (real, obligatorio y derivado)
+
 **Información sobre las estadísticas de los alquileres por socio:**
+
 * Código de la estadística (autonumérico)
 * Fecha de creación (fecha, obligatorio y no editable)
 * Total gastado (real, obligatorio y derivado)
+
 **Información relevante sobre el administrador:**
+
 * Código del administrador (autonumérico)
 * Nombre (cadena, obligatorio y editable)
+
 Cuando una película se crea, se debe asignar a un videoclub. Puede haber películas
 que se llamen igual pero estén en distintos videoclubs. Esto son objetos distintos de la
 clase película, que tienen el mismo nombre pero distinto código. 
