@@ -16,6 +16,6 @@ namespace Videoclub.Models
         public DateTime FechaEstreno { get; set; }
         public float PrecioAlquiler { get; set; }
         public virtual Videoclub Videoclub { get; set; }
-        public virtual List<Alquiler> Alquileres { get; set; }
+        public virtual List<PeliculaAlquiler> Alquileres { get; set; }
     }
 }

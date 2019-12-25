@@ -142,6 +142,10 @@
     <Compile Include="Migrations\201912241717512_Initial.designer.cs">
       <DependentUpon>201912241717512_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912252000246_cambio_PeliculaAlquiler.cs" />
+    <Compile Include="Migrations\201912252000246_cambio_PeliculaAlquiler.designer.cs">
+      <DependentUpon>201912252000246_cambio_PeliculaAlquiler.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Administrador.cs" />
     <Compile Include="Models\Alquiler.cs" />
@@ -238,6 +242,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201912241717512_Initial.resx">
       <DependentUpon>201912241717512_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912252000246_cambio_PeliculaAlquiler.resx">
+      <DependentUpon>201912252000246_cambio_PeliculaAlquiler.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
