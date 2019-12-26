@@ -47,7 +47,7 @@ namespace Videoclub.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AlquilerId,FechaRecogida,FechaDevolucion,TotalAPagar")] Alquiler alquiler)
+        public ActionResult Create([Bind(Include = "AlquilerId,FechaRecogida,FechaDevolucion,TotalAPagar,Peliculas")] Alquiler alquiler)
         {
             if (ModelState.IsValid)
             {

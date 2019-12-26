@@ -53,6 +53,9 @@
       <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MvcCheckBoxList, Version=1.4.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvcCheckBoxList.1.4.5\lib\net45\MvcCheckBoxList.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -131,7 +134,7 @@
     <Compile Include="Controllers\AlquilerController.cs" />
     <Compile Include="Controllers\EstadisticaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PeliculasController.cs" />
+    <Compile Include="Controllers\PeliculaController.cs" />
     <Compile Include="Controllers\SociosController.cs" />
     <Compile Include="Controllers\VideoclubController.cs" />
     <Compile Include="DAL\VideoclubContext.cs" />
@@ -141,6 +144,10 @@
     <Compile Include="Migrations\201912241717512_Initial.cs" />
     <Compile Include="Migrations\201912241717512_Initial.designer.cs">
       <DependentUpon>201912241717512_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912250233264_cambiosbd.cs" />
+    <Compile Include="Migrations\201912250233264_cambiosbd.designer.cs">
+      <DependentUpon>201912250233264_cambiosbd.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Administrador.cs" />
@@ -182,11 +189,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="web.config" />
-    <Content Include="Views\Peliculas\Create.cshtml" />
-    <Content Include="Views\Peliculas\Delete.cshtml" />
-    <Content Include="Views\Peliculas\Details.cshtml" />
-    <Content Include="Views\Peliculas\Edit.cshtml" />
-    <Content Include="Views\Peliculas\Index.cshtml" />
     <Content Include="Views\Socios\Create.cshtml" />
     <Content Include="Views\Socios\Delete.cshtml" />
     <Content Include="Views\Socios\Details.cshtml" />
@@ -197,11 +199,6 @@
     <Content Include="Views\Administrador\Details.cshtml" />
     <Content Include="Views\Administrador\Edit.cshtml" />
     <Content Include="Views\Administrador\Index.cshtml" />
-    <Content Include="Views\Alquiler\Create.cshtml" />
-    <Content Include="Views\Alquiler\Delete.cshtml" />
-    <Content Include="Views\Alquiler\Details.cshtml" />
-    <Content Include="Views\Alquiler\Edit.cshtml" />
-    <Content Include="Views\Alquiler\Index.cshtml" />
     <Content Include="Views\Estadistica\Create.cshtml" />
     <Content Include="Views\Estadistica\Delete.cshtml" />
     <Content Include="Views\Estadistica\Details.cshtml" />
@@ -212,6 +209,16 @@
     <Content Include="Views\Videoclub\Details.cshtml" />
     <Content Include="Views\Videoclub\Edit.cshtml" />
     <Content Include="Views\Videoclub\Index.cshtml" />
+    <Content Include="Views\Pelicula\Create.cshtml" />
+    <Content Include="Views\Pelicula\Delete.cshtml" />
+    <Content Include="Views\Pelicula\Details.cshtml" />
+    <Content Include="Views\Pelicula\Edit.cshtml" />
+    <Content Include="Views\Pelicula\Index.cshtml" />
+    <Content Include="Views\Alquiler\Create.cshtml" />
+    <Content Include="Views\Alquiler\Delete.cshtml" />
+    <Content Include="Views\Alquiler\Details.cshtml" />
+    <Content Include="Views\Alquiler\Edit.cshtml" />
+    <Content Include="Views\Alquiler\Index.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -238,6 +245,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201912241717512_Initial.resx">
       <DependentUpon>201912241717512_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912250233264_cambiosbd.resx">
+      <DependentUpon>201912250233264_cambiosbd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
