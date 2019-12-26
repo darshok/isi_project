@@ -39,6 +39,9 @@ namespace Videoclub.Controllers
         // GET: Alquiler/Create
         public ActionResult Create()
         {
+
+            ViewBag.SocioId = new SelectList(db.Socios, "SocioId", "Nombre");
+            ViewBag.PeliculaId = new SelectList(db.Peliculas, "PeliculaId", "Nombre");
             return View();
         }
 
@@ -88,6 +91,11 @@ namespace Videoclub.Controllers
                 return RedirectToAction("Index");
             }
             return View(alquiler);
+        }
+        //WIP
+        public ActionResult Multiple(int[] peliculaId)
+        {
+            return View();
         }
 
         // GET: Alquiler/Delete/5
