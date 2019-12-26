@@ -39,6 +39,7 @@ namespace Videoclub.Controllers
         // GET: Peliculas/Create
         public ActionResult Create()
         {
+            ViewBag.VideoclubId = new SelectList(db.Videoclubs, "VideoclubId", "Calle");
             return View();
         }
 
@@ -47,10 +48,11 @@ namespace Videoclub.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PeliculaId,Nombre,Director,FechaEstreno,PrecioAlquiler")] Pelicula pelicula)
+        public ActionResult Create([Bind(Include = "PeliculaId,Nombre,Director,FechaEstreno,PrecioAlquiler")] Pelicula pelicula, [Bind(Include = "VideoclubId")] Models.Videoclub videoclub)
         {
             if (ModelState.IsValid)
             {
+                pelicula.Videoclub = db.Videoclubs.FirstOrDefault(v => v.VideoclubId == videoclub.VideoclubId);
                 db.Peliculas.Add(pelicula);
                 db.SaveChanges();
                 return RedirectToAction("Index");

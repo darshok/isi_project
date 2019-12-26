@@ -47,10 +47,11 @@ namespace Videoclub.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SocioId,Nombre,Edad")] Socio socio)
+        public ActionResult Create([Bind(Include = "SocioId,Nombre,Edad")] Socio socio, [Bind(Include = "VideoclubId")] Models.Videoclub videoclub)
         {
             if (ModelState.IsValid)
             {
+                socio.Videoclub = db.Videoclubs.FirstOrDefault(v => v.VideoclubId == videoclub.VideoclubId);
                 db.Socios.Add(socio);
                 db.SaveChanges();
                 return RedirectToAction("Index");
