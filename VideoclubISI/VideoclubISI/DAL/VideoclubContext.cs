@@ -21,6 +21,7 @@ namespace Videoclub.DAL
         public DbSet<Pelicula> Peliculas { get; set; }
         public DbSet<Socio> Socios { get; set; }
         public DbSet<Models.Videoclub> Videoclubs { get; set; }
+        public DbSet<PeliculaAlquiler> PeliculaAlquiler { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

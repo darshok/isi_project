@@ -33,6 +33,24 @@
         <dd>
             @Html.DisplayFor(model => model.TotalAPagar)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Socio)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Socio.Nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Socio.Edad)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Socio.Edad)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Peliculas)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Peliculas.Count)
+        </dd>
 
     </dl>
 </div>

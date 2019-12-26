@@ -11,8 +11,11 @@ namespace Videoclub.Models
     {
      
         public int SocioId { get; set; }
+        [Display(Name = "Nombre del socio")]
         public string Nombre { get; set; }
+        [Display(Name = "Edad del socio")]
         public int Edad { get; set; }
+        [Display(Name = "Videoclub del socio")]
         public virtual Videoclub Videoclub { get; set; }
         public virtual List<Alquiler> Alquileres { get; set; }
     }

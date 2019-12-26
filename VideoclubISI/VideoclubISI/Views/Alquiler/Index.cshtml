@@ -20,6 +20,12 @@
         <th>
             @Html.DisplayNameFor(model => model.TotalAPagar)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Socio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Peliculas)
+        </th>
         <th></th>
     </tr>
 
@@ -35,9 +41,15 @@
             @Html.DisplayFor(modelItem => item.TotalAPagar)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AlquilerId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AlquilerId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AlquilerId })
+            @Html.DisplayFor(modelItem => item.Socio.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Peliculas.Count)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.AlquilerId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.AlquilerId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.AlquilerId })
         </td>
     </tr>
 }

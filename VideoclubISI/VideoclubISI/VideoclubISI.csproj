@@ -186,11 +186,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="web.config" />
-    <Content Include="Views\Peliculas\Create.cshtml" />
-    <Content Include="Views\Peliculas\Delete.cshtml" />
-    <Content Include="Views\Peliculas\Details.cshtml" />
-    <Content Include="Views\Peliculas\Edit.cshtml" />
-    <Content Include="Views\Peliculas\Index.cshtml" />
     <Content Include="Views\Socios\Create.cshtml" />
     <Content Include="Views\Socios\Delete.cshtml" />
     <Content Include="Views\Socios\Details.cshtml" />
@@ -216,6 +211,11 @@
     <Content Include="Views\Videoclub\Details.cshtml" />
     <Content Include="Views\Videoclub\Edit.cshtml" />
     <Content Include="Views\Videoclub\Index.cshtml" />
+    <Content Include="Views\Peliculas\Create.cshtml" />
+    <Content Include="Views\Peliculas\Delete.cshtml" />
+    <Content Include="Views\Peliculas\Details.cshtml" />
+    <Content Include="Views\Peliculas\Edit.cshtml" />
+    <Content Include="Views\Peliculas\Index.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

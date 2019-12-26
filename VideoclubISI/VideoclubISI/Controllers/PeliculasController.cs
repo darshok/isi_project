@@ -11,131 +11,107 @@ using Videoclub.Models;
 
 namespace Videoclub.Controllers
 {
-    public class AlquilerController : Controller
+    public class PeliculasController : Controller
     {
         private VideoclubContext db = new VideoclubContext();
 
-        // GET: Alquiler
+        // GET: Peliculas
         public ActionResult Index()
         {
-            return View(db.Alquileres.ToList());
+            return View(db.Peliculas.ToList());
         }
 
-        // GET: Alquiler/Details/5
+        // GET: Peliculas/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Alquiler alquiler = db.Alquileres.FirstOrDefault(a => a.AlquilerId == id);
-            if (alquiler == null)
+            Pelicula pelicula = db.Peliculas.Find(id);
+            if (pelicula == null)
             {
                 return HttpNotFound();
             }
-            return View(alquiler);
+            return View(pelicula);
         }
 
-        // GET: Alquiler/Create
+        // GET: Peliculas/Create
         public ActionResult Create()
         {
-
-            ViewBag.SocioId = new SelectList(db.Socios, "SocioId", "Nombre");
-            var peliculas = db.Peliculas.ToList();
-            
-
-            ViewBag.PeliculasView = new MultiSelectList(peliculas, "PeliculaId", "Nombre");
             return View();
         }
 
-        // POST: Alquiler/Create
+        // POST: Peliculas/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AlquilerId,FechaRecogida,FechaDevolucion")] Alquiler alquiler, [Bind(Include = "SocioId")] Socio socio, [Bind(Include = "PeliculaId")] int[] peliculaId)
+        public ActionResult Create([Bind(Include = "PeliculaId,Nombre,Director,FechaEstreno,PrecioAlquiler")] Pelicula pelicula)
         {
             if (ModelState.IsValid)
             {
-                alquiler.Socio = db.Socios.Find(socio.SocioId);
-                foreach(var pelicula in peliculaId)
-                {
-                    var pAux = db.Peliculas.FirstOrDefault(p => p.PeliculaId == pelicula);
-                    db.PeliculaAlquiler.Add(new PeliculaAlquiler { Pelicula = pAux , Alquiler = alquiler });
-                    alquiler.TotalAPagar += pAux.PrecioAlquiler;
-                }
-
-                db.Alquileres.Add(alquiler);
+                db.Peliculas.Add(pelicula);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(alquiler);
+            return View(pelicula);
         }
 
-        // GET: Alquiler/Edit/5
+        // GET: Peliculas/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Alquiler alquiler = db.Alquileres.Find(id);
-            if (alquiler == null)
+            Pelicula pelicula = db.Peliculas.Find(id);
+            if (pelicula == null)
             {
                 return HttpNotFound();
             }
-            return View(alquiler);
+            return View(pelicula);
         }
 
-        // POST: Alquiler/Edit/5
+        // POST: Peliculas/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AlquilerId,FechaRecogida,FechaDevolucion,TotalAPagar")] Alquiler alquiler)
+        public ActionResult Edit([Bind(Include = "PeliculaId,Nombre,Director,FechaEstreno,PrecioAlquiler")] Pelicula pelicula)
         {
             if (ModelState.IsValid)
             {
-                var alquilerAux = db.Alquileres.FirstOrDefault(a => a.AlquilerId == alquiler.AlquilerId);
-                alquilerAux.FechaDevolucion = alquiler.FechaDevolucion;
-                db.Entry(alquilerAux).State = EntityState.Modified;
+                db.Entry(pelicula).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(alquiler);
-        }
-        //WIP
-        [HttpPost]
-        public ActionResult Multiple(int[] peliculaId)
-        {
-            return View();
+            return View(pelicula);
         }
 
-        // GET: Alquiler/Delete/5
+        // GET: Peliculas/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Alquiler alquiler = db.Alquileres.Find(id);
-            if (alquiler == null)
+            Pelicula pelicula = db.Peliculas.Find(id);
+            if (pelicula == null)
             {
                 return HttpNotFound();
             }
-            return View(alquiler);
+            return View(pelicula);
         }
 
-        // POST: Alquiler/Delete/5
+        // POST: Peliculas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Alquiler alquiler = db.Alquileres.Find(id);
-            db.PeliculaAlquiler.RemoveRange(db.PeliculaAlquiler.Where(a => a.Alquiler.AlquilerId == id));
-            db.SaveChanges();
-            db.Alquileres.Remove(alquiler);
+            Pelicula pelicula = db.Peliculas.Find(id);
+            db.Peliculas.Remove(pelicula);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
