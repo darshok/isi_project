@@ -39,6 +39,8 @@ namespace Videoclub.Controllers
         // GET: Socios/Create
         public ActionResult Create()
         {
+            ViewBag.VideoclubId = new SelectList(db.Videoclubs, "VideoclubId", "Calle");
+            ViewBag.SocioId = new SelectList(db.Socios, "SocioId", "Nombre");
             return View();
         }
 
@@ -72,6 +74,9 @@ namespace Videoclub.Controllers
             {
                 return HttpNotFound();
             }
+            var videoclubs = new SelectList(db.Videoclubs, "VideoclubId", "Calle");
+            ViewBag.VideoclubId = videoclubs;
+            ViewBag.SocioId = new SelectList(db.Socios, "SocioId", "Nombre");
             return View(socio);
         }
 
@@ -80,11 +85,13 @@ namespace Videoclub.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SocioId,Nombre,Edad")] Socio socio)
+        public ActionResult Edit([Bind(Include = "SocioId,Nombre,Edad")] Socio socio, [Bind(Include = "VideoclubId")] Models.Videoclub videoclub)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(socio).State = EntityState.Modified;
+                var socioAux = db.Socios.FirstOrDefault(s => s.SocioId == socio.SocioId);
+                socioAux.Videoclub = db.Videoclubs.FirstOrDefault(v => v.VideoclubId == videoclub.VideoclubId);
+                db.Entry(socioAux).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

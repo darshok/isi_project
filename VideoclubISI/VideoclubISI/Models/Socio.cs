@@ -18,5 +18,6 @@ namespace Videoclub.Models
         [Display(Name = "Videoclub del socio")]
         public virtual Videoclub Videoclub { get; set; }
         public virtual List<Alquiler> Alquileres { get; set; }
+        public virtual List<Estadistica> Estadisticas { get; set; }
     }
 }

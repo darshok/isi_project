@@ -11,17 +11,17 @@ using Videoclub.Models;
 
 namespace Videoclub.Controllers
 {
-    public class EstadisticaController : Controller
+    public class EstadisticasController : Controller
     {
         private VideoclubContext db = new VideoclubContext();
 
-        // GET: Estadistica
+        // GET: Estadisticas
         public ActionResult Index()
         {
             return View(db.Estadisticas.ToList());
         }
 
-        // GET: Estadistica/Details/5
+        // GET: Estadisticas/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,21 +36,40 @@ namespace Videoclub.Controllers
             return View(estadistica);
         }
 
-        // GET: Estadistica/Create
+        // GET: Estadisticas/Create
         public ActionResult Create()
         {
+            ViewBag.SocioId = new SelectList(db.Socios, "SocioId", "Nombre");
             return View();
         }
 
-        // POST: Estadistica/Create
+        // POST: Estadisticas/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EstadisticaId,FechaCreacion,TotalGastado")] Estadistica estadistica)
+        public ActionResult Create([Bind(Include = "EstadisticaId,FechaCreacion")] Estadistica estadistica, [Bind(Include = "SocioId")] Socio socio)
         {
+            ViewBag.SocioId = new SelectList(db.Socios, "SocioId", "Nombre");
             if (ModelState.IsValid)
             {
+                var añoEstadistica = estadistica.FechaCreacion.Year;
+                var mesEstadistica = estadistica.FechaCreacion.Month;
+                var numEstadisticasSocio = db.Socios.FirstOrDefault(s => s.SocioId == socio.SocioId)
+                   .Estadisticas.Where(e => e.FechaCreacion.Year == añoEstadistica &&
+                   e.FechaCreacion.Month == mesEstadistica).ToList().Count;
+                //Cuando ya existe una estadistica de un socio en un mes (de un año) determinado
+                if(numEstadisticasSocio > 0)
+                {
+                    TempData["msg"] = "<script>alert('Ya existe una estadística para el mes introducido en este usuario');</script>";
+                    return View();
+                }
+                var socioAux = db.Socios.FirstOrDefault(s => s.SocioId == socio.SocioId);
+                estadistica.Socio = socioAux;
+                estadistica.Videoclub = socioAux.Videoclub;
+                estadistica.TotalGastado =
+                    socioAux.Alquileres.Where
+                    (a => a.FechaRecogida.Month == mesEstadistica && a.FechaRecogida.Year == añoEstadistica).Sum(a => a.TotalAPagar);
                 db.Estadisticas.Add(estadistica);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -59,9 +78,10 @@ namespace Videoclub.Controllers
             return View(estadistica);
         }
 
-        // GET: Estadistica/Edit/5
+        // GET: Estadisticas/Edit/5
         public ActionResult Edit(int? id)
         {
+            ViewBag.SocioId = new SelectList(db.Socios, "SocioId", "Nombre");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -74,7 +94,7 @@ namespace Videoclub.Controllers
             return View(estadistica);
         }
 
-        // POST: Estadistica/Edit/5
+        // POST: Estadisticas/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -90,7 +110,7 @@ namespace Videoclub.Controllers
             return View(estadistica);
         }
 
-        // GET: Estadistica/Delete/5
+        // GET: Estadisticas/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -105,7 +125,7 @@ namespace Videoclub.Controllers
             return View(estadistica);
         }
 
-        // POST: Estadistica/Delete/5
+        // POST: Estadisticas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

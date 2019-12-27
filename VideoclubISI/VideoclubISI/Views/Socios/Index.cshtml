@@ -17,6 +17,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Edad)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Videoclub.Calle)
+        </th>
         <th></th>
     </tr>
 
@@ -29,9 +32,12 @@
             @Html.DisplayFor(modelItem => item.Edad)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.SocioId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.SocioId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.SocioId })
+            @Html.DisplayFor(modelItem => item.Videoclub.Calle)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.SocioId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.SocioId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.SocioId })
         </td>
     </tr>
 }

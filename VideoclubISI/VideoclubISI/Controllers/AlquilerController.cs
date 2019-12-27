@@ -42,8 +42,6 @@ namespace Videoclub.Controllers
 
             ViewBag.SocioId = new SelectList(db.Socios, "SocioId", "Nombre");
             var peliculas = db.Peliculas.ToList();
-            
-
             ViewBag.PeliculasView = new MultiSelectList(peliculas, "PeliculaId", "Nombre");
             return View();
         }
@@ -55,6 +53,9 @@ namespace Videoclub.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "AlquilerId,FechaRecogida,FechaDevolucion")] Alquiler alquiler, [Bind(Include = "SocioId")] Socio socio, [Bind(Include = "PeliculaId")] int[] peliculaId)
         {
+            ViewBag.SocioId = new SelectList(db.Socios, "SocioId", "Nombre");
+            var peliculas = db.Peliculas.ToList();
+            ViewBag.PeliculasView = new MultiSelectList(peliculas, "PeliculaId", "Nombre");
             if (ModelState.IsValid)
             {
                 alquiler.Socio = db.Socios.Find(socio.SocioId);

@@ -88,8 +88,9 @@ namespace Videoclub.Controllers
         {
             if (ModelState.IsValid)
             {
-                pelicula.Videoclub = db.Videoclubs.FirstOrDefault(v => v.VideoclubId == videoclub.VideoclubId);
-                db.Entry(pelicula).State = EntityState.Modified;
+                var peliculaAux = db.Peliculas.FirstOrDefault(s => s.PeliculaId == pelicula.PeliculaId);
+                peliculaAux.Videoclub = db.Videoclubs.FirstOrDefault(v => v.VideoclubId == videoclub.VideoclubId);
+                db.Entry(peliculaAux).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

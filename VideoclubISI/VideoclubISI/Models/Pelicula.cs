@@ -13,6 +13,7 @@ namespace Videoclub.Models
         public int PeliculaId { get; set; }
         public string Nombre { get; set; }
         public string Director { get; set; }
+        [DataType(DataType.Date)]
         public DateTime FechaEstreno { get; set; }
         public float PrecioAlquiler { get; set; }
         public virtual Videoclub Videoclub { get; set; }

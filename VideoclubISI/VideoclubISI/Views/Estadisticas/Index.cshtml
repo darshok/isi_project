@@ -17,6 +17,9 @@
         <th>
             @Html.DisplayNameFor(model => model.TotalGastado)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Socio.Nombre)
+        </th>
         <th></th>
     </tr>
 
@@ -29,9 +32,12 @@
             @Html.DisplayFor(modelItem => item.TotalGastado)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.EstadisticaId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.EstadisticaId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.EstadisticaId })
+            @Html.DisplayFor(modelItem => item.Socio.Nombre)
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.EstadisticaId }) |*@
+            @Html.ActionLink("Details", "Details", new { id = item.EstadisticaId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.EstadisticaId })
         </td>
     </tr>
 }
