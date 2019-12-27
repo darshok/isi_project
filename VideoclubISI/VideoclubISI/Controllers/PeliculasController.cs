@@ -73,6 +73,9 @@ namespace Videoclub.Controllers
             {
                 return HttpNotFound();
             }
+            var videoclubs = new SelectList(db.Videoclubs, "VideoclubId", "Calle");
+            ViewBag.VideoclubId = videoclubs;
+
             return View(pelicula);
         }
 
@@ -81,10 +84,11 @@ namespace Videoclub.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PeliculaId,Nombre,Director,FechaEstreno,PrecioAlquiler")] Pelicula pelicula)
+        public ActionResult Edit([Bind(Include = "PeliculaId,Nombre,Director,FechaEstreno,PrecioAlquiler")] Pelicula pelicula, [Bind(Include = "VideoclubId")] Models.Videoclub videoclub)
         {
             if (ModelState.IsValid)
             {
+                pelicula.Videoclub = db.Videoclubs.FirstOrDefault(v => v.VideoclubId == videoclub.VideoclubId);
                 db.Entry(pelicula).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
