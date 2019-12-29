@@ -59,7 +59,7 @@ namespace Videoclub.Controllers
                    .Estadisticas.Where(e => e.FechaCreacion.Year == añoEstadistica &&
                    e.FechaCreacion.Month == mesEstadistica).ToList().Count;
                 //Cuando ya existe una estadistica de un socio en un mes (de un año) determinado
-                if(numEstadisticasSocio > 0)
+                if(numEstadisticasSocio == 0)
                 {
                     TempData["msg"] = "<script>alert('Ya existe una estadística para el mes introducido en este usuario');</script>";
                     return View();

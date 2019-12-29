@@ -55,8 +55,8 @@ namespace Videoclub.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            var videoclubs = new SelectList(db.Videoclubs, "VideoclubId", "Calle");
-            ViewBag.VideoclubId = videoclubs;
+            //var videoclubs = new SelectList(db.Videoclubs, "VideoclubId", "Calle");
+            //ViewBag.VideoclubId = videoclubs;
             return View(videoclub);
         }
 
